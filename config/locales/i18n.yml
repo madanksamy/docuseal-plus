@@ -550,6 +550,11 @@ en: &en
   new_user: New User
   unarchive: Unarchive
   last_session: Last session
+  accepted: Accepted
+  invitation_pending: Invitation Pending
+  invitation_expired: Invitation Expired
+  invitation_expires_at: 'Invitation link expires: %{time}'
+  resend_invitation: Resend Invitation
   unlock_more_user_roles_with_docuseal_pro: Unlock more user roles with DocuSeal Pro.
   view_active: View Active
   team_account: Team account
@@ -5556,6 +5561,11 @@ de: &de
   new_user: Neuer Benutzer
   unarchive: Entarchivieren
   last_session: Letzte Sitzung
+  accepted: Angenommen
+  invitation_pending: Einladung ausstehend
+  invitation_expired: Einladung abgelaufen
+  invitation_expires_at: 'Einladungslink läuft ab: %{time}'
+  resend_invitation: Einladung erneut senden
   unlock_more_user_roles_with_docuseal_pro: Weitere Benutzerrollen mit DocuSeal Pro freischalten.
   view_active: Aktive anzeigen
   team_account: Teamkonto

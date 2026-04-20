@@ -4,7 +4,11 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    # All users can manage their own configs
+    # All users can read and update their own profile + manage their own configs.
+    # Note: intentionally NOT granting :create/:destroy on self — this prevents
+    # self-archival via UsersController#update (which allows archived_at when
+    # `can?(:create, @user)` is true).
+    can %i[read update], User, id: user.id
     can :manage, EncryptedUserConfig, user_id: user.id
     can :manage, UserConfig, user_id: user.id
 

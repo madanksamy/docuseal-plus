@@ -48,6 +48,9 @@
               <%= t('role') %>
             </th>
             <th>
+              <%= t('status') %>
+            </th>
+            <th>
               <%= t('last_session') %>
             </th>
             <th class="text-right" width="1px">
@@ -75,9 +78,31 @@
                 </span>
               </td>
               <td>
+                <% case user.invitation_status %>
+                <% when :accepted %>
+                  <span class="badge badge-success badge-outline whitespace-nowrap">
+                    <%= t('accepted') %>
+                  </span>
+                <% when :pending %>
+                  <span class="badge badge-warning badge-outline whitespace-nowrap"
+                        title="<%= t('invitation_expires_at', time: l(user.invitation_expires_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale)) %>">
+                    <%= t('invitation_pending') %>
+                  </span>
+                <% when :expired %>
+                  <span class="badge badge-error badge-outline whitespace-nowrap">
+                    <%= t('invitation_expired') %>
+                  </span>
+                <% end %>
+              </td>
+              <td>
                 <%= user.current_sign_in_at ? l(user.current_sign_in_at.in_time_zone(current_account.timezone), format: :short, locale: current_account.locale) : '-' %>
               </td>
               <td class="flex items-center space-x-2 justify-end">
+                <% if params[:status].blank? && can?(:manage, user) && user != current_user && user.archived_at.blank? && user.invitation_status != :accepted && Accounts.can_send_emails?(current_account) %>
+                  <%= button_to user_send_reset_password_path(user), method: :put, class: 'btn btn-outline btn-xs', title: t('resend_invitation'), data: { turbo_confirm: t('are_you_sure_') } do %>
+                    <%= t('resend_invitation') %>
+                  <% end %>
+                <% end %>
                 <% if params[:status].blank? && can?(:update, user) && user.archived_at.blank? %>
                   <%= link_to edit_user_path(user), class: 'btn btn-outline btn-xs', title: t('edit'), data: { turbo_frame: 'modal' } do %>
                     <%= t('edit') %>
