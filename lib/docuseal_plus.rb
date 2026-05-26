@@ -21,15 +21,15 @@ module DocusealPlus
         hide_console_menu: true,
         hide_sso_menu: true,
         hide_trusted_signature_promo: true,
-        show_speedbits_banner: true,
-        show_plus_badge: true,
+        show_speedbits_banner: false,            # VMVTech: disable third-party Speedbits banner
+        show_plus_badge: false,                   # VMVTech: disable Plus-fork badge
 
-        # Branding
-        fork_name: 'DocuSeal Plus',
-        fork_company: 'Speedbits',
-        fork_company_full: 'Smart In Venture GmbH',
-        fork_website: 'https://www.speedbits.io',
-        fork_repository: 'https://github.com/speedbitsinfinitytools/docuseal-plus'
+        # Branding (VMVTech overrides — Speedbits originals preserved in git history)
+        fork_name: 'VMVTech DocuSeal',
+        fork_company: 'VMVTech, Ltd.',
+        fork_company_full: 'VMVTech, Ltd. (Washington State)',
+        fork_website: 'https://vmvtech.com',
+        fork_repository: 'https://github.com/madanksamy/docuseal-plus'
       }
     end
 
