@@ -23,6 +23,7 @@ module DocusealPlus
         hide_trusted_signature_promo: true,
         show_speedbits_banner: false,            # VMVTech: disable third-party Speedbits banner
         show_plus_badge: false,                   # VMVTech: disable Plus-fork badge
+        hide_attribution: true,                   # VMVTech: hide "Powered by DocuSeal" footer on signing/completed pages
 
         # Branding (VMVTech overrides — Speedbits originals preserved in git history)
         fork_name: 'VMVTech DocuSeal',
@@ -68,6 +69,10 @@ module DocusealPlus
 
     def show_speedbits_banner?
       enabled?(:show_speedbits_banner)
+    end
+
+    def hide_attribution?
+      enabled?(:hide_attribution)
     end
   end
 end
