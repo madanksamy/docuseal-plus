@@ -186,8 +186,10 @@ Rails.application.routes.draw do
       resource :reveal_access_token, only: %i[show create], controller: 'reveal_access_token'
     end
     resources :email, only: %i[index create], controller: 'email_smtp_settings'
+    resources :email_test, only: %i[new create], controller: 'email_smtp_settings_test'
     resources :sso, only: %i[index], controller: 'sso_settings'
     resources :notifications, only: %i[index create], controller: 'notifications_settings'
+    resources :notifications_test, only: %i[new create], controller: 'notifications_settings_test'
     resource :esign, only: %i[show create new update destroy], controller: 'esign_settings'
     resources :users, only: %i[index]
     resources :archived_users, only: %i[index], path: 'users/:status', controller: 'users',
@@ -195,6 +197,7 @@ Rails.application.routes.draw do
     resources :integration_users, only: %i[index], path: 'users/:status', controller: 'users',
                                   defaults: { status: :integration }
     resource :personalization, only: %i[show create], controller: 'personalization_settings'
+    resource :account_logo, only: %i[create destroy], controller: 'account_logo'
     resources :webhooks, only: %i[index show new create update destroy], controller: 'webhook_settings' do
       post :resend
 
