@@ -39,6 +39,12 @@ Rails.application.routes.draw do
     resources :templates, only: %i[update show index destroy] do
       resources :clone, only: %i[create], controller: 'templates_clone'
       resources :submissions, only: %i[index create]
+      collection do
+        # VMVTech Plus addition: PDF-in template creation.
+        # Body is JSON with `pdf_base64` (recommended) or `url`. We use JSON
+        # rather than multipart because the api namespace forces JSON parsing.
+        post 'pdf', to: 'templates_pdf#create'
+      end
     end
     resources :tools, only: %i[] do
       post :merge, on: :collection
